@@ -14,8 +14,10 @@ const argv = yargs
   .alias('help', 'h')
   .argv;
 
+var encodedAddress = encodeURIComponent(argv.a)
+
 request({
-  url: 'https://maps.googleapis.com/maps/api/geocode/json?address=1829+Los+Altos+Dr',
+  url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}`,
   json: true
 }, (error, response, body) => {
   console.log(`Address: ${body.results[0].formatted_address}`);
